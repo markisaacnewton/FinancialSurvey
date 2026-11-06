@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Health & Security Survey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pru: {
+              red: '#D61B22',
+              hover: '#B51218',
+              light: '#FFF5F5',
+              border: '#FECACA',
+              dark: '#880808'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .shake {
+      animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col antialiased selection:bg-pru-red selection:text-white">
+
+  <!-- Header Navigation -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-pru-red text-white flex items-center justify-center font-bold text-xl shadow-md shadow-red-200">
+          <i class="fa-solid me-0.5 fa-shield-halved"></i>
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight leading-tight">Financial Health & Security Survey</h1>
+          <p class="text-xs text-gray-500 font-medium">Confidential Discovery & Planning Form</p>
+        </div>
+      </div>
+      <div class="text-xs font-semibold text-pru-red bg-pru-light border border-pru-border px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+        <i class="fa-solid fa-user-shield"></i> Survey
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-1 w-full">
+    
+    <!-- Unclickable Header Stepper -->
+    <div class="mb-8 bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-sm">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-pru-red flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-pru-red animate-pulse"></span>
+          Step <span id="currentStepNum">1</span> of 6
+        </span>
+        <span id="stepTitleBadge" class="text-xs font-bold text-gray-700 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
+          Personal Information
+        </span>
+      </div>
+
+      <!-- Live Progress Bar -->
+      <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden mb-5">
+        <div id="progressBar" class="bg-pru-red h-full transition-all duration-500 ease-out rounded-full" style="width: 16.66%;"></div>
+      </div>
+
+      <!-- Unclickable Step Badges -->
+      <div class="grid grid-cols-6 gap-1 sm:gap-2 text-center select-none pointer-events-none" id="stepIndicators">
+        <div data-step="1" class="step-badge flex flex-col items-center gap-1 text-pru-red font-bold">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-pru-red bg-pru-red text-white flex items-center justify-center text-xs font-bold shadow-sm transition-all">1</div>
+          <span class="text-[10px] hidden sm:block truncate w-full">Personal</span>
+        </div>
+        <div data-step="2" class="step-badge flex flex-col items-center gap-1 text-gray-400 font-medium">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300 bg-white text-gray-400 flex items-center justify-center text-xs font-bold transition-all">2</div>
+          <span class="text-[10px] hidden sm:block truncate w-full">Coverage</span>
+        </div>
+        <div data-step="3" class="step-badge flex flex-col items-center gap-1 text-gray-400 font-medium">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300 bg-white text-gray-400 flex items-center justify-center text-xs font-bold transition-all">3</div>
+          <span class="text-[10px] hidden sm:block truncate w-full">Insurance Story</span>
+        </div>
+        <div data-step="4" class="step-badge flex flex-col items-center gap-1 text-gray-400 font-medium">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300 bg-white text-gray-400 flex items-center justify-center text-xs font-bold transition-all">4</div>
+          <span class="text-[10px] hidden sm:block truncate w-full">Cash Flow</span>
+        </div>
+        <div data-step="5" class="step-badge flex flex-col items-center gap-1 text-gray-400 font-medium">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300 bg-white text-gray-400 flex items-center justify-center text-xs font-bold transition-all">5</div>
+          <span class="text-[10px] hidden sm:block truncate w-full">Future Goals</span>
+        </div>
+        <div data-step="6" class="step-badge flex flex-col items-center gap-1 text-gray-400 font-medium">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300 bg-white text-gray-400 flex items-center justify-center text-xs font-bold transition-all">6</div>
+          <span class="text-[10px] hidden sm:block truncate w-full">Assessment</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Box for Unanswered Questions -->
+    <div id="validationAlert" class="hidden mb-6 p-4 bg-red-50 border-l-4 border-pru-red rounded-xl text-pru-dark text-sm flex items-start gap-3 shadow-sm shake">
+      <i class="fa-solid fa-circle-exclamation text-pru-red text-lg mt-0.5"></i>
+      <div>
+        <p class="font-bold">Required Questions Missing</p>
+        <p class="text-xs text-red-700 mt-0.5">Lahat ng question ay required sagutan bago makaproceed. Pakisagutan ang mga na-highlight na tanong below.</p>
+      </div>
+    </div>
+
+    <!-- Form Container -->
+    <form id="surveyForm" onsubmit="return false;" class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sm:p-8">
+
+      <!-- SECTION 1: PERSONAL INFORMATION -->
+      <section id="section-1" class="form-section space-y-6">
+        <div class="border-b border-gray-100 pb-4">
+          <h2 class="text-xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+            <i class="fa-solid fa-user-check text-pru-red"></i> Section 1: Personal Information
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">Please enter your basic profile details below.</p>
+        </div>
+
+        <div class="space-y-5">
+          <!-- Full Name -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1.5">
+              Full Name <span class="text-pru-red">*</span>
+            </label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Juan De La Cruz" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-pru-red focus:ring-2 focus:ring-red-100 outline-none text-sm transition-all">
+          </div>
+
+          <!-- Email Address (Added) -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1.5">
+              Email Address <span class="text-pru-red">*</span>
+            </label>
+            <input type="email" id="email" name="email" placeholder="e.g. juan.delacruz@example.com" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-pru-red focus:ring-2 focus:ring-red-100 outline-none text-sm transition-all">
+          </div>
+
+          <!-- Birthday & Age -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2 question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-1.5">
+                Birthday <span class="text-pru-red">*</span>
+              </label>
+              <input type="date" id="birthday" name="birthday" required onchange="calculateAge()"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-pru-red focus:ring-2 focus:ring-red-100 outline-none text-sm transition-all">
+            </div>
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-1.5">Age</label>
+              <input type="text" id="computedAge" name="computedAge"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 text-sm font-bold cursor-not-allowed outline-none">
+            </div>
+          </div>
+
+          <!-- Occupation -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1.5">
+              Occupation <span class="text-pru-red">*</span>
+            </label>
+            <input type="text" id="occupation" name="occupation" placeholder="e.g. Software Engineer, Teacher, Business Owner" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-pru-red focus:ring-2 focus:ring-red-100 outline-none text-sm transition-all">
+          </div>
+
+          <!-- Civil Status -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Civil Status <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center gap-1.5">
+                <input type="radio" name="civilStatus" value="Single" required class="accent-pru-red">
+                <span class="text-xs font-medium">Single</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center gap-1.5">
+                <input type="radio" name="civilStatus" value="Married" class="accent-pru-red">
+                <span class="text-xs font-medium">Married</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center gap-1.5">
+                <input type="radio" name="civilStatus" value="With partner" class="accent-pru-red">
+                <span class="text-xs font-medium">With partner</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center gap-1.5">
+                <input type="radio" name="civilStatus" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Financial Dependents -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Do you currently have financial dependents? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-2 gap-3 max-w-sm">
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="hasDependents" value="Yes" onchange="toggleDependentsCount(true)" required class="accent-pru-red">
+                <span class="text-sm font-medium">Yes</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="hasDependents" value="No" onchange="toggleDependentsCount(false)" class="accent-pru-red">
+                <span class="text-sm font-medium">No</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- How Many Dependents (Conditional) -->
+          <div id="dependentsCountContainer" class="hidden transition-all duration-300 bg-red-50/50 p-4 rounded-xl border border-pru-border question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              If yes, how many people financially depend on you? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <label class="p-2.5 bg-white border rounded-lg text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="dependentsCount" value="1" class="accent-pru-red">
+                <span class="text-xs font-medium">1</span>
+              </label>
+              <label class="p-2.5 bg-white border rounded-lg text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="dependentsCount" value="2-3" class="accent-pru-red">
+                <span class="text-xs font-medium">2 - 3</span>
+              </label>
+              <label class="p-2.5 bg-white border rounded-lg text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="dependentsCount" value="4-5" class="accent-pru-red">
+                <span class="text-xs font-medium">4 - 5</span>
+              </label>
+              <label class="p-2.5 bg-white border rounded-lg text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="dependentsCount" value="More than 5" class="accent-pru-red">
+                <span class="text-xs font-medium">More than 5</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: EXISTING INSURANCE COVERAGE -->
+      <section id="section-2" class="form-section hidden space-y-6">
+        <div class="border-b border-gray-100 pb-4">
+          <h2 class="text-xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+            <i class="fa-solid fa-file-contract text-pru-red"></i> Section 2: Existing Insurance Coverage
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">Let's understand your current financial protection.</p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Policy Gate Question -->
+          <div class="question-block bg-pru-light/40 p-4 rounded-xl border border-pru-border">
+            <label class="block text-sm font-bold text-gray-900 mb-2">
+              Do you currently have an existing insurance policy? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-2 gap-3 max-w-sm">
+              <label class="p-3 bg-white border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="hasExistingPolicy" value="Yes" onchange="handlePolicyGate(true)" required class="accent-pru-red">
+                <span class="text-sm font-semibold">Yes</span>
+              </label>
+              <label class="p-3 bg-white border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="hasExistingPolicy" value="No" onchange="handlePolicyGate(false)" class="accent-pru-red">
+                <span class="text-sm font-semibold">No</span>
+              </label>
+            </div>
+            <p class="text-[11px] text-gray-500 mt-2 italic"><i class="fa-solid fa-circle-info"></i> Selecting 'No' will automatically skip detailed insurance questions and move directly to Cash Flow.</p>
+          </div>
+
+          <!-- HIDDEN CONDITIONAL QUESTIONS (Shown only if Has Existing Policy = YES) -->
+          <div id="existingPolicyDetails" class="hidden space-y-6 pt-2">
+            
+            <!-- Insurance Companies -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-2">
+                Which insurance companies are you currently insured with? <span class="text-pru-red">*</span>
+              </label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="Pru Life UK" class="accent-pru-red">
+                  <span class="text-xs font-semibold text-pru-red">Pru Life UK</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="Sun Life" class="accent-pru-red">
+                  <span class="text-xs font-medium">Sun Life</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="AIA" class="accent-pru-red">
+                  <span class="text-xs font-medium">AIA</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="AXA" class="accent-pru-red">
+                  <span class="text-xs font-medium">AXA</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="Manulife" class="accent-pru-red">
+                  <span class="text-xs font-medium">Manulife</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="Insular Life" class="accent-pru-red">
+                  <span class="text-xs font-medium">Insular Life</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="FWD" class="accent-pru-red">
+                  <span class="text-xs font-medium">FWD</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex flex-col items-center justify-center gap-1.5">
+                  <input type="radio" name="insuranceCompany" value="Others" class="accent-pru-red">
+                  <span class="text-xs font-medium">Others</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Type of Insurance -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-2">
+                What type of insurance policy do you currently have? <span class="text-pru-red">*</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Life Insurance" class="accent-pru-red">
+                  <span class="text-xs font-medium">Life Insurance</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Investment-Linked Insurance (VUL)" class="accent-pru-red">
+                  <span class="text-xs font-medium">Investment-Linked Insurance (VUL)</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Traditional Life Insurance" class="accent-pru-red">
+                  <span class="text-xs font-medium">Traditional Life Insurance</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Health Insurance" class="accent-pru-red">
+                  <span class="text-xs font-medium">Health Insurance</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Critical Illness Coverage" class="accent-pru-red">
+                  <span class="text-xs font-medium">Critical Illness Coverage</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Accident Insurance" class="accent-pru-red">
+                  <span class="text-xs font-medium">Accident Insurance</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="HMO" class="accent-pru-red">
+                  <span class="text-xs font-medium">HMO</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Educational Plan" class="accent-pru-red">
+                  <span class="text-xs font-medium">Educational Plan</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Retirement Plan" class="accent-pru-red">
+                  <span class="text-xs font-medium">Retirement Plan</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="policyType" value="Not sure" class="accent-pru-red">
+                  <span class="text-xs font-medium text-gray-500">Not sure</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Active Policies Count -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-2">
+                How many active insurance policies do you currently have? <span class="text-pru-red">*</span>
+              </label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex justify-center items-center gap-2">
+                  <input type="radio" name="activePoliciesCount" value="1" class="accent-pru-red">
+                  <span class="text-xs font-medium">1</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex justify-center items-center gap-2">
+                  <input type="radio" name="activePoliciesCount" value="2" class="accent-pru-red">
+                  <span class="text-xs font-medium">2</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex justify-center items-center gap-2">
+                  <input type="radio" name="activePoliciesCount" value="3" class="accent-pru-red">
+                  <span class="text-xs font-medium">3</span>
+                </label>
+                <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex justify-center items-center gap-2">
+                  <input type="radio" name="activePoliciesCount" value="4 or more" class="accent-pru-red">
+                  <span class="text-xs font-medium">4 or more</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Insurance Coverage Amount -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-2">
+                Do you know the approximate amount of your life insurance coverage? <span class="text-pru-red">*</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="coverageAmount" value="Below ₱500,000" class="accent-pru-red">
+                  <span class="text-xs font-medium">Below ₱500,000</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="coverageAmount" value="₱500,000 - ₱1,000,000" class="accent-pru-red">
+                  <span class="text-xs font-medium">₱500,000 - ₱1,000,000</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="coverageAmount" value="₱1,000,001 - ₱3,000,000" class="accent-pru-red">
+                  <span class="text-xs font-medium">₱1,000,001 - ₱3,000,000</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="coverageAmount" value="₱3,000,001 - ₱5,000,000" class="accent-pru-red">
+                  <span class="text-xs font-medium">₱3,000,001 - ₱5,000,000</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="coverageAmount" value="Above ₱5,000,000" class="accent-pru-red">
+                  <span class="text-xs font-medium">Above ₱5,000,000</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="coverageAmount" value="I'm not sure" class="accent-pru-red">
+                  <span class="text-xs font-medium text-gray-500">I'm not sure</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Included Benefits (Checkbox) -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-1">
+                What benefits are included in your existing policy? <span class="text-pru-red">*</span>
+              </label>
+              <p class="text-xs text-gray-500 mb-2">Select all that apply (at least 1 required).</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Life Insurance Benefit" class="accent-pru-red">
+                  <span class="text-xs font-medium">Life Insurance Benefit</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Critical Illness Benefit" class="accent-pru-red">
+                  <span class="text-xs font-medium">Critical Illness Benefit</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Hospital Income Benefit" class="accent-pru-red">
+                  <span class="text-xs font-medium">Hospital Income Benefit</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Accident Benefit" class="accent-pru-red">
+                  <span class="text-xs font-medium">Accident Benefit</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Total and Permanent Disability" class="accent-pru-red">
+                  <span class="text-xs font-medium">Total and Permanent Disability</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Waiver of Premium" class="accent-pru-red">
+                  <span class="text-xs font-medium">Waiver of Premium</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Investment/Fund Value" class="accent-pru-red">
+                  <span class="text-xs font-medium">Investment/Fund Value</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Guaranteed Cash Payout" class="accent-pru-red">
+                  <span class="text-xs font-medium">Guaranteed Cash Payout</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Retirement Benefit" class="accent-pru-red">
+                  <span class="text-xs font-medium">Retirement Benefit</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="checkbox" name="policyBenefits" value="Others" class="accent-pru-red">
+                  <span class="text-xs font-medium">Others</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3 sm:col-span-2">
+                  <input type="checkbox" name="policyBenefits" value="I'm not familiar with my policy benefits" class="accent-pru-red">
+                  <span class="text-xs font-medium text-gray-500">I'm not familiar with my policy benefits</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Premium Payments -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-2">
+                Approximately how much do you pay for your insurance premiums? <span class="text-pru-red">*</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="premiumAmount" value="Below ₱1,000/month" class="accent-pru-red">
+                  <span class="text-xs font-medium">Below ₱1,000/month</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="premiumAmount" value="₱1,000 - ₱2,500/month" class="accent-pru-red">
+                  <span class="text-xs font-medium">₱1,000 - ₱2,500/month</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="premiumAmount" value="₱2,501 - ₱5,000/month" class="accent-pru-red">
+                  <span class="text-xs font-medium">₱2,501 - ₱5,000/month</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="premiumAmount" value="₱5,001 - ₱10,000/month" class="accent-pru-red">
+                  <span class="text-xs font-medium">₱5,001 - ₱10,000/month</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="premiumAmount" value="Above ₱10,000/month" class="accent-pru-red">
+                  <span class="text-xs font-medium">Above ₱10,000/month</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="premiumAmount" value="Annual payment" class="accent-pru-red">
+                  <span class="text-xs font-medium">Annual payment</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3 sm:col-span-2">
+                  <input type="radio" name="premiumAmount" value="Not sure" class="accent-pru-red">
+                  <span class="text-xs font-medium text-gray-500">Not sure</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Understanding Level -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-2">
+                How confident are you that you understand the benefits and limitations of your existing policy? <span class="text-pru-red">*</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="confidenceLevel" value="Very confident" class="accent-pru-red">
+                  <span class="text-xs font-medium">Very confident</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="confidenceLevel" value="Somewhat confident" class="accent-pru-red">
+                  <span class="text-xs font-medium">Somewhat confident</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="confidenceLevel" value="Not very confident" class="accent-pru-red">
+                  <span class="text-xs font-medium">Not very confident</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="confidenceLevel" value="I need someone to explain it to me." class="accent-pru-red">
+                  <span class="text-xs font-medium text-pru-red">I need someone to explain it to me.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Last Review -->
+            <div class="question-block">
+              <label class="block text-sm font-semibold text-gray-800 mb-2">
+                When was the last time someone reviewed your insurance coverage with you? <span class="text-pru-red">*</span>
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="lastReview" value="Within the last 6 months" class="accent-pru-red">
+                  <span class="text-xs font-medium">Within the last 6 months</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="lastReview" value="6 months to 1 year ago" class="accent-pru-red">
+                  <span class="text-xs font-medium">6 months to 1 year ago</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="lastReview" value="More than a year ago" class="accent-pru-red">
+                  <span class="text-xs font-medium">More than a year ago</span>
+                </label>
+                <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                  <input type="radio" name="lastReview" value="Never" class="accent-pru-red">
+                  <span class="text-xs font-medium">Never</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: YOUR INSURANCE STORY -->
+      <section id="section-3" class="form-section hidden space-y-6">
+        <div class="border-b border-gray-100 pb-4">
+          <h2 class="text-xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-pru-red"></i> Section 3: Your Insurance Story
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">We'd love to understand your experience and what motivated you to get insured.</p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Motivation -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              What motivated you to get your first insurance policy? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Protection for my family" class="accent-pru-red">
+                <span class="text-xs font-medium">Protection for my family</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Financial security in case of unexpected events" class="accent-pru-red">
+                <span class="text-xs font-medium">Financial security in case of unexpected events</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Savings and investment" class="accent-pru-red">
+                <span class="text-xs font-medium">Savings and investment</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Retirement preparation" class="accent-pru-red">
+                <span class="text-xs font-medium">Retirement preparation</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Recommended by a friend or family member" class="accent-pru-red">
+                <span class="text-xs font-medium">Recommended by a friend or family member</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Recommended by a financial advisor" class="accent-pru-red">
+                <span class="text-xs font-medium">Recommended by a financial advisor</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Company/employer benefit" class="accent-pru-red">
+                <span class="text-xs font-medium">Company/employer benefit</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="motivation" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Biggest Consideration -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              What was your biggest consideration when choosing your insurance policy? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="biggestConsideration" value="Affordable premium" class="accent-pru-red">
+                <span class="text-xs font-medium">Affordable premium</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="biggestConsideration" value="Higher insurance coverage" class="accent-pru-red">
+                <span class="text-xs font-medium">Higher insurance coverage</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="biggestConsideration" value="Investment potential" class="accent-pru-red">
+                <span class="text-xs font-medium">Investment potential</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="biggestConsideration" value="Health and critical illness benefits" class="accent-pru-red">
+                <span class="text-xs font-medium">Health and critical illness benefits</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="biggestConsideration" value="Reputation of the insurance company" class="accent-pru-red">
+                <span class="text-xs font-medium">Reputation of the insurance company</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="biggestConsideration" value="Trust in the financial advisor" class="accent-pru-red">
+                <span class="text-xs font-medium">Trust in the financial advisor</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3 sm:col-span-2">
+                <input type="radio" name="biggestConsideration" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Application Experience -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              How was your application experience? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="applicationExperience" value="Very smooth and convenient" class="accent-pru-red">
+                <span class="text-xs font-medium">Very smooth and convenient</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="applicationExperience" value="Smooth, but required several documents" class="accent-pru-red">
+                <span class="text-xs font-medium">Smooth, but required several documents</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="applicationExperience" value="Somewhat complicated" class="accent-pru-red">
+                <span class="text-xs font-medium">Somewhat complicated</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="applicationExperience" value="Difficult and time-consuming" class="accent-pru-red">
+                <span class="text-xs font-medium">Difficult and time-consuming</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Advisor Explanation -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Did your financial advisor thoroughly explain your policy before you applied? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="advisorExplanation" value="Yes, everything was explained." class="accent-pru-red">
+                <span class="text-xs font-medium">Yes, everything was explained.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="advisorExplanation" value="Some benefits were explained." class="accent-pru-red">
+                <span class="text-xs font-medium">Some benefits were explained.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="advisorExplanation" value="I only understood the basics." class="accent-pru-red">
+                <span class="text-xs font-medium">I only understood the basics.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="advisorExplanation" value="I wasn't fully aware of what I was getting." class="accent-pru-red">
+                <span class="text-xs font-medium">I wasn't fully aware of what I was getting.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Decision Factor -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              What made you decide to proceed with your insurance application? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="decisionProceed" value="I understood the importance of insurance." class="accent-pru-red">
+                <span class="text-xs font-medium">I understood the importance of insurance.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="decisionProceed" value="I trusted my financial advisor." class="accent-pru-red">
+                <span class="text-xs font-medium">I trusted my financial advisor.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="decisionProceed" value="The benefits matched my needs." class="accent-pru-red">
+                <span class="text-xs font-medium">The benefits matched my needs.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="decisionProceed" value="I wanted to start early." class="accent-pru-red">
+                <span class="text-xs font-medium">I wanted to start early.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="decisionProceed" value="I didn't want to miss the opportunity." class="accent-pru-red">
+                <span class="text-xs font-medium">I didn't want to miss the opportunity.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="decisionProceed" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Reflections / Wish Known -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1.5">
+              Looking back, is there anything you wish you had known before getting your insurance policy? <span class="text-pru-red">*</span>
+            </label>
+            <textarea id="wishHadKnown" name="wishHadKnown" rows="3" required placeholder="Type your answer here..."
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-pru-red focus:ring-2 focus:ring-red-100 outline-none text-sm transition-all resize-none"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: FINANCIAL LIFESTYLE & CASH FLOW -->
+      <section id="section-4" class="form-section hidden space-y-6">
+        <div class="border-b border-gray-100 pb-4">
+          <h2 class="text-xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+            <i class="fa-solid fa-wallet text-pru-red"></i> Section 4: Financial Lifestyle & Cash Flow
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">This section helps us understand how you currently manage your money.</p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Monthly Expenses -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Approximately how much do you spend monthly on your regular expenses? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlyExpenses" value="Below ₱10,000" class="accent-pru-red">
+                <span class="text-xs font-medium">Below ₱10,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlyExpenses" value="₱10,000 - ₱20,000" class="accent-pru-red">
+                <span class="text-xs font-medium">₱10,000 - ₱20,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlyExpenses" value="₱20,001 - ₱30,000" class="accent-pru-red">
+                <span class="text-xs font-medium">₱20,001 - ₱30,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlyExpenses" value="₱30,001 - ₱50,000" class="accent-pru-red">
+                <span class="text-xs font-medium">₱30,001 - ₱50,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlyExpenses" value="₱50,001 - ₱75,000" class="accent-pru-red">
+                <span class="text-xs font-medium">₱50,001 - ₱75,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlyExpenses" value="Above ₱75,000" class="accent-pru-red">
+                <span class="text-xs font-medium">Above ₱75,000</span>
+              </label>
+              
+            </div>
+          </div>
+
+          <!-- Expense Allocation (Checkbox) -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1">
+              Which of the following account for most of your monthly expenses? <span class="text-pru-red">*</span>
+            </label>
+            <p class="text-xs text-gray-500 mb-2">Select all that apply (at least 1 required).</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Food and groceries" class="accent-pru-red">
+                <span class="text-xs font-medium">Food and groceries</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Housing/Rent" class="accent-pru-red">
+                <span class="text-xs font-medium">Housing/Rent</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Utilities" class="accent-pru-red">
+                <span class="text-xs font-medium">Utilities</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Transportation" class="accent-pru-red">
+                <span class="text-xs font-medium">Transportation</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Family support" class="accent-pru-red">
+                <span class="text-xs font-medium">Family support</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Education" class="accent-pru-red">
+                <span class="text-xs font-medium">Education</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Loans and debt payments" class="accent-pru-red">
+                <span class="text-xs font-medium">Loans and debt payments</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="expenseCategories" value="Lifestyle and entertainment" class="accent-pru-red">
+                <span class="text-xs font-medium">Lifestyle and entertainment</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3 sm:col-span-2">
+                <input type="checkbox" name="expenseCategories" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Savings Allocation Amount -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Approximately how much do you set aside for savings every month? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlySavings" value="I currently don't save." class="accent-pru-red">
+                <span class="text-xs font-medium">I currently don't save.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlySavings" value="Below ₱2,000" class="accent-pru-red">
+                <span class="text-xs font-medium">Below ₱2,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlySavings" value="₱2,000 - ₱5,000" class="accent-pru-red">
+                <span class="text-xs font-medium">₱2,000 - ₱5,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlySavings" value="₱5,001 - ₱10,000" class="accent-pru-red">
+                <span class="text-xs font-medium">₱5,001 - ₱10,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlySavings" value="₱10,001 - ₱20,000" class="accent-pru-red">
+                <span class="text-xs font-medium">₱10,001 - ₱20,000</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="monthlySavings" value="Above ₱20,000" class="accent-pru-red">
+                <span class="text-xs font-medium">Above ₱20,000</span>
+              </label>
+              
+              
+            </div>
+          </div>
+
+          <!-- Savings Instruments (Checkbox) -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1">
+              Where do you usually allocate your savings? <span class="text-pru-red">*</span>
+            </label>
+            <p class="text-xs text-gray-500 mb-2">Select all that apply (at least 1 required).</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Traditional Bank Savings" class="accent-pru-red">
+                <span class="text-xs font-medium">Traditional Bank Savings</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Digital Banks" class="accent-pru-red">
+                <span class="text-xs font-medium">Digital Banks</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Time Deposits" class="accent-pru-red">
+                <span class="text-xs font-medium">Time Deposits</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Stocks" class="accent-pru-red">
+                <span class="text-xs font-medium">Stocks</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Mutual Funds" class="accent-pru-red">
+                <span class="text-xs font-medium">Mutual Funds</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Investment-Linked Insurance" class="accent-pru-red">
+                <span class="text-xs font-medium">Investment-Linked Insurance</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Government Savings Programs (MP2, etc.)" class="accent-pru-red">
+                <span class="text-xs font-medium">Government Savings Programs (MP2, etc.)</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Real Estate" class="accent-pru-red">
+                <span class="text-xs font-medium">Real Estate</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Cash on Hand" class="accent-pru-red">
+                <span class="text-xs font-medium">Cash on Hand</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="savingsInstruments" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Primary Savings Reason -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              What is your primary reason for saving money? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Emergency Fund" class="accent-pru-red">
+                <span class="text-xs font-medium">Emergency Fund</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Retirement" class="accent-pru-red">
+                <span class="text-xs font-medium">Retirement</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Children's Education" class="accent-pru-red">
+                <span class="text-xs font-medium">Children's Education</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Buying a House or Property" class="accent-pru-red">
+                <span class="text-xs font-medium">Buying a House or Property</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Starting or Expanding a Business" class="accent-pru-red">
+                <span class="text-xs font-medium">Starting or Expanding a Business</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Travel and Lifestyle" class="accent-pru-red">
+                <span class="text-xs font-medium">Travel and Lifestyle</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Wealth Accumulation" class="accent-pru-red">
+                <span class="text-xs font-medium">Wealth Accumulation</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Financial Independence" class="accent-pru-red">
+                <span class="text-xs font-medium">Financial Independence</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Future Family Needs" class="accent-pru-red">
+                <span class="text-xs font-medium">Future Family Needs</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="primarySavingsReason" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Emergency Fund Status -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Do you currently have an emergency fund? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="emergencyFundStatus" value="Yes, equivalent to 3-6 months of expenses." class="accent-pru-red">
+                <span class="text-xs font-medium">Yes, equivalent to 3-6 months of expenses.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="emergencyFundStatus" value="Yes, but less than 3 months." class="accent-pru-red">
+                <span class="text-xs font-medium">Yes, but less than 3 months.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="emergencyFundStatus" value="More than 6 months of expenses." class="accent-pru-red">
+                <span class="text-xs font-medium">More than 6 months of expenses.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="emergencyFundStatus" value="Not yet." class="accent-pru-red">
+                <span class="text-xs font-medium text-pru-red">Not yet.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: FUTURE FINANCIAL GOALS -->
+      <section id="section-5" class="form-section hidden space-y-6">
+        <div class="border-b border-gray-100 pb-4">
+          <h2 class="text-xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+            <i class="fa-solid fa-bullseye text-pru-red"></i> Section 5: Future Financial Goals
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">Let's explore what you want to achieve financially.</p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Top 3 Priorities -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1">
+              What are your top three financial priorities right now? <span class="text-pru-red">*</span>
+            </label>
+            <p class="text-xs text-gray-500 mb-2">Select up to 3 options (at least 1 required).</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Strengthen my family's financial protection" class="accent-pru-red">
+                <span class="text-xs font-medium">Strengthen my family's financial protection</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Build my savings" class="accent-pru-red">
+                <span class="text-xs font-medium">Build my savings</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Prepare for retirement" class="accent-pru-red">
+                <span class="text-xs font-medium">Prepare for retirement</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Protect my income" class="accent-pru-red">
+                <span class="text-xs font-medium">Protect my income</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Secure my children's future" class="accent-pru-red">
+                <span class="text-xs font-medium">Secure my children's future</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Build wealth" class="accent-pru-red">
+                <span class="text-xs font-medium">Build wealth</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Pay off debts" class="accent-pru-red">
+                <span class="text-xs font-medium">Pay off debts</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="financialPriorities" value="Establish an emergency fund" class="accent-pru-red">
+                <span class="text-xs font-medium">Establish an emergency fund</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3 sm:col-span-2">
+                <input type="checkbox" name="financialPriorities" value="Others" class="accent-pru-red">
+                <span class="text-xs font-medium">Others</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Ideal Retirement Age -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              At what age would you ideally want to retire? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="retirementAge" value="40-45" class="accent-pru-red">
+                <span class="text-xs font-medium">40 - 45</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="retirementAge" value="46-50" class="accent-pru-red">
+                <span class="text-xs font-medium">46 - 50</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="retirementAge" value="51-55" class="accent-pru-red">
+                <span class="text-xs font-medium">51 - 55</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="retirementAge" value="56-60" class="accent-pru-red">
+                <span class="text-xs font-medium">56 - 60</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="retirementAge" value="61 and above" class="accent-pru-red">
+                <span class="text-xs font-medium">61 and above</span>
+              </label>
+              <label class="p-3 border rounded-xl text-center cursor-pointer hover:border-pru-red transition-all flex items-center justify-center gap-2">
+                <input type="radio" name="retirementAge" value="Haven't thought about it yet" class="accent-pru-red">
+                <span class="text-xs font-medium text-gray-500">Not thought yet</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Target Retirement Amount -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Do you have a specific amount in mind for your retirement fund? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="retirementAmount" value="Below ₱1 Million" class="accent-pru-red">
+                <span class="text-xs font-medium">Below ₱1 Million</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="retirementAmount" value="₱1 Million - ₱3 Million" class="accent-pru-red">
+                <span class="text-xs font-medium">₱1 Million - ₱3 Million</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="retirementAmount" value="₱3 Million - ₱5 Million" class="accent-pru-red">
+                <span class="text-xs font-medium">₱3 Million - ₱5 Million</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="retirementAmount" value="₱5 Million - ₱10 Million" class="accent-pru-red">
+                <span class="text-xs font-medium">₱5 Million - ₱10 Million</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="retirementAmount" value="Above ₱10 Million" class="accent-pru-red">
+                <span class="text-xs font-medium">Above ₱10 Million</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="retirementAmount" value="I haven't calculated it yet." class="accent-pru-red">
+                <span class="text-xs font-medium text-gray-500">I haven't calculated it yet</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 5-10 Year Goal -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1.5">
+              What financial goal would you most like to accomplish within the next 5-10 years? <span class="text-pru-red">*</span>
+            </label>
+            <textarea id="fiveYearGoal" name="fiveYearGoal" rows="3" required placeholder="Type your 5-10 year milestone here..."
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-pru-red focus:ring-2 focus:ring-red-100 outline-none text-sm transition-all resize-none"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: FINANCIAL ASSESSMENT & RECOMMENDATIONS -->
+      <section id="section-6" class="form-section hidden space-y-6">
+        <div class="border-b border-gray-100 pb-4">
+          <h2 class="text-xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-pru-red"></i> Section 6: Assessment & Recommendations
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">Final step: Let us know how we can best support your financial journey.</p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Policy Review Interest -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Would you be interested in having your existing insurance policy reviewed? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="policyReviewInterest" value="Yes, I'd like to understand my existing benefits better." class="accent-pru-red">
+                <span class="text-xs font-medium">Yes, I'd like to understand my existing benefits better.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="policyReviewInterest" value="Yes, I'd like to know if my coverage is sufficient." class="accent-pru-red">
+                <span class="text-xs font-medium">Yes, I'd like to know if my coverage is sufficient.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="policyReviewInterest" value="Yes, I'd like to explore additional protection." class="accent-pru-red">
+                <span class="text-xs font-medium">Yes, I'd like to explore additional protection.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="policyReviewInterest" value="Not at the moment." class="accent-pru-red">
+                <span class="text-xs font-medium text-gray-500">Not at the moment.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Financial Areas to Improve (Checkbox) -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-1">
+              Which financial areas would you like to improve? <span class="text-pru-red">*</span>
+            </label>
+            <p class="text-xs text-gray-500 mb-2">Select all that apply (at least 1 required).</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Life Insurance Protection" class="accent-pru-red">
+                <span class="text-xs font-medium">Life Insurance Protection</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Critical Illness Protection" class="accent-pru-red">
+                <span class="text-xs font-medium">Critical Illness Protection</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Retirement Planning" class="accent-pru-red">
+                <span class="text-xs font-medium">Retirement Planning</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Savings and Wealth Accumulation" class="accent-pru-red">
+                <span class="text-xs font-medium">Savings and Wealth Accumulation</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Children's Education Planning" class="accent-pru-red">
+                <span class="text-xs font-medium">Children's Education Planning</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Business Continuity Planning" class="accent-pru-red">
+                <span class="text-xs font-medium">Business Continuity Planning</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Income Protection" class="accent-pru-red">
+                <span class="text-xs font-medium">Income Protection</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="checkbox" name="improvementAreas" value="Emergency Fund Preparation" class="accent-pru-red">
+                <span class="text-xs font-medium">Emergency Fund Preparation</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Open to Personal Recommendation -->
+          <div class="question-block">
+            <label class="block text-sm font-semibold text-gray-800 mb-2">
+              Would you be open to receiving a personalized financial recommendation based on your answers? <span class="text-pru-red">*</span>
+            </label>
+            <div class="grid grid-cols-1 gap-2.5">
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="openToRecommendation" value="Yes, definitely." class="accent-pru-red">
+                <span class="text-xs font-semibold text-pru-red">Yes, definitely.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="openToRecommendation" value="Yes, but I'd like to understand my options first." class="accent-pru-red">
+                <span class="text-xs font-medium">Yes, but I'd like to understand my options first.</span>
+              </label>
+              <label class="p-3 border rounded-xl cursor-pointer hover:border-pru-red transition-all flex items-center gap-3">
+                <input type="radio" name="openToRecommendation" value="Maybe in the future." class="accent-pru-red">
+                <span class="text-xs font-medium text-gray-500">Maybe in the future.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION CONTROL BUTTONS -->
+      <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between gap-4">
+        <button type="button" id="prevBtn" onclick="navigateStep(-1)" disabled
+          class="px-5 py-3 rounded-xl border border-gray-300 font-semibold text-xs text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i> Previous
+        </button>
+
+        <button type="button" id="nextBtn" onclick="navigateStep(1)"
+          class="px-6 py-3 rounded-xl bg-pru-red text-white font-bold text-xs hover:bg-pru-hover shadow-md shadow-red-200 transition-all flex items-center gap-2">
+          <span>Next Section</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button type="button" id="submitBtn" onclick="handleFormSubmission()" class="hidden px-8 py-3 rounded-xl bg-pru-red text-white font-extrabold text-sm hover:bg-pru-hover shadow-lg shadow-red-200 transition-all flex items-center gap-2 animate-bounce">
+          <i class="fa-solid fa-paper-plane"></i> Submit Survey
+        </button>
+      </div>
+
+    </form>
+
+    <!-- COMPLETION SUCCESS CONTAINER -->
+    <div id="successCard" class="hidden bg-white rounded-2xl border border-gray-200 shadow-xl p-8 sm:p-10 text-center space-y-6">
+      <div class="w-16 h-16 bg-red-100 text-pru-red rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div>
+        <h2 class="text-2xl font-extrabold text-gray-900">Survey Successfully Submitted!</h2>
+        <p class="text-sm text-gray-600 mt-2 max-w-md mx-auto">Maraming salamat! Your responses have been automatically routed to <strong>plukmarkison@gmail.com</strong>.</p>
+      </div>
+
+      <div class="p-4 bg-pru-light border border-pru-border rounded-xl text-xs text-pru-dark font-medium max-w-md mx-auto">
+        <i class="fa-solid fa-envelope-circle-check text-pru-red me-1"></i> Email dispatch sent via Web3Forms API.
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <button onclick="copySummaryText()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-gray-300 font-semibold text-xs text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-2">
+          <i class="fa-regular fa-copy"></i> Copy Answers Summary
+        </button>
+        <button onclick="downloadSummaryFile()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-gray-300 font-semibold text-xs text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i> Download Text Report
+        </button>
+        <button onclick="window.location.reload()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-pru-red text-white font-bold text-xs hover:bg-pru-hover flex items-center justify-center gap-2">
+          <i class="fa-solid fa-rotate-right"></i> Answer Again
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let currentStep = 1;
+    const ADVISOR_EMAIL = 'plukmarkisaacison@gmail.com';
+    const WEB3FORMS_ACCESS_KEY = '1932a2ff-e11a-4aa9-b617-a4d95044087c';
+
+    const stepTitles = {
+      1: 'Personal Information',
+      2: 'Existing Insurance Coverage',
+      3: 'Your Insurance Story',
+      4: 'Financial Lifestyle & Cash Flow',
+      5: 'Future Financial Goals',
+      6: 'Assessment & Recommendations'
+    };
+
+    function calculateAge() {
+      const bdayVal = document.getElementById('birthday').value;
+      if (!bdayVal) return;
+      const bday = new Date(bdayVal);
+      const today = new Date();
+      let age = today.getFullYear() - bday.getFullYear();
+      const m = today.getMonth() - bday.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < bday.getDate())) {
+        age--;
+      }
+      document.getElementById('computedAge').value = age >= 0 ? `${age} years old` : '';
+    }
+
+    function toggleDependentsCount(show) {
+      const container = document.getElementById('dependentsCountContainer');
+      if (show) {
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+        document.querySelectorAll('input[name="dependentsCount"]').forEach(el => el.checked = false);
+      }
+    }
+
+    function handlePolicyGate(hasPolicy) {
+      const detailsContainer = document.getElementById('existingPolicyDetails');
+      if (hasPolicy) {
+        detailsContainer.classList.remove('hidden');
+      } else {
+        detailsContainer.classList.add('hidden');
+        detailsContainer.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => el.checked = false);
+      }
+    }
+
+    function validateStep(step) {
+      const currentSec = document.getElementById(`section-${step}`);
+      if (!currentSec) return true;
+
+      const blocks = currentSec.querySelectorAll('.question-block');
+      let isValid = true;
+      let firstInvalidElement = null;
+
+      blocks.forEach(block => {
+        if (block.closest('.hidden')) return;
+
+        const textInputs = block.querySelectorAll('input[type="text"]:not([readonly]), input[type="email"], input[type="date"], textarea');
+        textInputs.forEach(input => {
+          if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('border-pru-red', 'bg-red-50');
+            if (!firstInvalidElement) firstInvalidElement = input;
+          } else {
+            input.classList.remove('border-pru-red', 'bg-red-50');
+          }
+        });
+
+        const radios = block.querySelectorAll('input[type="radio"]');
+        if (radios.length > 0) {
+          const radioChecked = Array.from(radios).some(r => r.checked);
+          if (!radioChecked) {
+            isValid = false;
+            block.classList.add('p-2', 'rounded-xl', 'border', 'border-pru-red', 'bg-red-50/30');
+            if (!firstInvalidElement) firstInvalidElement = radios[0];
+          } else {
+            block.classList.remove('p-2', 'rounded-xl', 'border', 'border-pru-red', 'bg-red-50/30');
+          }
+        }
+
+        const checkboxes = block.querySelectorAll('input[type="checkbox"]');
+        if (checkboxes.length > 0) {
+          const cbChecked = Array.from(checkboxes).some(c => c.checked);
+          if (!cbChecked) {
+            isValid = false;
+            block.classList.add('p-2', 'rounded-xl', 'border', 'border-pru-red', 'bg-red-50/30');
+            if (!firstInvalidElement) firstInvalidElement = checkboxes[0];
+          } else {
+            block.classList.remove('p-2', 'rounded-xl', 'border', 'border-pru-red', 'bg-red-50/30');
+          }
+        }
+      });
+
+      const alertBox = document.getElementById('validationAlert');
+      if (!isValid) {
+        alertBox.classList.remove('hidden');
+        if (firstInvalidElement) {
+          firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        alertBox.classList.add('hidden');
+      }
+
+      return isValid;
+    }
+
+    function navigateStep(direction) {
+      if (direction === 1) {
+        if (!validateStep(currentStep)) return;
+      }
+
+      let targetStep = currentStep + direction;
+
+      const hasPolicy = document.querySelector('input[name="hasExistingPolicy"]:checked')?.value;
+      if (hasPolicy === 'No') {
+        if (currentStep === 2 && direction === 1) {
+          targetStep = 4;
+        } else if (currentStep === 4 && direction === -1) {
+          targetStep = 2;
+        }
+      }
+
+      if (targetStep < 1 || targetStep > 6) return;
+
+      document.getElementById(`section-${currentStep}`).classList.add('hidden');
+      document.getElementById(`section-${targetStep}`).classList.remove('hidden');
+
+      currentStep = targetStep;
+      
+    // Handle dynamic fields for "Not sure", "I'm not sure", "Never", "Not thought yet", "I haven't calculated yet" & "Others"
+    function setupDynamicReasonFields() {
+      const notSureValues = ["not sure", "i'm not sure", "never", "not thought yet", "haven't thought about it yet", "i haven't calculated it yet.", "i haven't calculated it yet"];
+      const otherValues = ["other", "others"];
+
+      document.querySelectorAll('.question-block').forEach((block, idx) => {
+        const inputs = block.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+        if (inputs.length === 0) return;
+
+        // Create container for reason/other text input if not exists
+        let detailContainer = block.querySelector('.dynamic-detail-container');
+        if (!detailContainer) {
+          detailContainer = document.createElement('div');
+          detailContainer.className = 'dynamic-detail-container hidden mt-3 transition-all duration-300';
+          block.appendChild(detailContainer);
+        }
+
+        const updateDynamicFields = () => {
+          let checkedInputs = Array.from(inputs).filter(i => i.checked);
+          let needsNotSureReason = checkedInputs.some(i => notSureValues.includes(i.value.trim().toLowerCase()));
+          let needsOtherSpecify = checkedInputs.some(i => otherValues.includes(i.value.trim().toLowerCase()));
+
+          let htmlContent = '';
+
+          if (needsNotSureReason) {
+            const fieldName = inputs[0].name + '_reason';
+            htmlContent += `
+              <div class="p-3 bg-red-50/60 rounded-xl border border-pru-border animate-fade-in">
+                <label class="block text-xs font-semibold text-gray-800 mb-1">
+                  Bakit ito ang iyong napili? (Why?) <span class="text-pru-red">*</span>
+                </label>
+                <input type="text" name="${fieldName}" required placeholder="Pakipaliwanag nang maikli..."
+                  class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-pru-red focus:ring-1 focus:ring-red-100 outline-none text-xs transition-all bg-white">
+              </div>
+            `;
+          }
+
+          if (needsOtherSpecify) {
+            const fieldName = inputs[0].name + '_other_details';
+            htmlContent += `
+              <div class="p-3 bg-gray-50 rounded-xl border border-gray-300 ${needsNotSureReason ? 'mt-2.5' : ''} animate-fade-in">
+                <label class="block text-xs font-semibold text-gray-800 mb-1">
+                  Paki-specify ang detalye (Please specify): <span class="text-pru-red">*</span>
+                </label>
+                <input type="text" name="${fieldName}" required placeholder="Ilagay ang detalye dito..."
+                  class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-pru-red focus:ring-1 focus:ring-red-100 outline-none text-xs transition-all bg-white">
+              </div>
+            `;
+          }
+
+          if (needsNotSureReason || needsOtherSpecify) {
+            detailContainer.innerHTML = htmlContent;
+            detailContainer.classList.remove('hidden');
+          } else {
+            detailContainer.innerHTML = '';
+            detailContainer.classList.add('hidden');
+          }
+        };
+
+        inputs.forEach(input => {
+          input.addEventListener('change', updateDynamicFields);
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupDynamicReasonFields);
+
+    setupDynamicReasonFields();
+    updateUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateUI() {
+      document.getElementById('currentStepNum').textContent = currentStep;
+      document.getElementById('stepTitleBadge').textContent = stepTitles[currentStep];
+
+      const progressPercent = (currentStep / 6) * 100;
+      document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+      document.querySelectorAll('.step-badge').forEach(badge => {
+        const stepNum = parseInt(badge.getAttribute('data-step'));
+        const circle = badge.querySelector('div');
+
+        if (stepNum === currentStep) {
+          badge.className = 'step-badge flex flex-col items-center gap-1 text-pru-red font-bold';
+          circle.className = 'w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-pru-red bg-pru-red text-white flex items-center justify-center text-xs font-bold shadow-sm';
+        } else if (stepNum < currentStep) {
+          badge.className = 'step-badge flex flex-col items-center gap-1 text-pru-red font-medium';
+          circle.className = 'w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-pru-red bg-pru-light text-pru-red flex items-center justify-center text-xs font-bold';
+        } else {
+          badge.className = 'step-badge flex flex-col items-center gap-1 text-gray-400 font-medium';
+          circle.className = 'w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300 bg-white text-gray-400 flex items-center justify-center text-xs font-bold';
+        }
+      });
+
+      document.getElementById('prevBtn').disabled = currentStep === 1;
+
+      if (currentStep === 6) {
+        document.getElementById('nextBtn').classList.add('hidden');
+        document.getElementById('submitBtn').classList.remove('hidden');
+      } else {
+        document.getElementById('nextBtn').classList.remove('hidden');
+        document.getElementById('submitBtn').classList.add('hidden');
+      }
+    }
+
+    function getFormData() {
+      const form = document.getElementById('surveyForm');
+      const formData = new FormData(form);
+      const data = {};
+
+      for (let [key, val] of formData.entries()) {
+        if (data[key]) {
+          if (!Array.isArray(data[key])) {
+            data[key] = [data[key]];
+          }
+          data[key].push(val);
+        } else {
+          data[key] = val;
+        }
+      }
+
+      return data;
+    }
+
+    async function handleFormSubmission() {
+      if (!validateStep(6)) return;
+
+      const data = getFormData();
+
+      document.getElementById('surveyForm').classList.add('hidden');
+      document.getElementById('successCard').classList.remove('hidden');
+
+      try {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            email: ADVISOR_EMAIL,
+            subject: `[FNA Lead] ${data.fullName || 'New Client'} - Financial Health Survey`,
+            from_name: 'Financial Health Survey Tool',
+            replyto: data.email || undefined,
+            message: formatDataSummary(data)
+          })
+        });
+      } catch (err) {
+        console.warn('Submission fallback active:', err);
+      }
+    }
+
+    function formatDataSummary(d) {
+      return `
+==============================================
+FINANCIAL HEALTH & SECURITY SURVEY SUMMARY
+==============================================
+Recipient Advisor: ${ADVISOR_EMAIL}
+
+SECTION 1: PERSONAL INFORMATION
+- Full Name: ${d.fullName || 'N/A'}
+- Email Address: ${d.email || 'N/A'}
+- Birthday: ${d.birthday || 'N/A'} (${d.computedAge || ''})
+- Occupation: ${d.occupation || 'N/A'}
+- Civil Status: ${d.civilStatus || 'N/A'}
+- Financial Dependents: ${d.hasDependents || 'N/A'} ${d.dependentsCount ? `(${d.dependentsCount} people)` : ''}
+
+SECTION 2: EXISTING COVERAGE
+- Has Policy: ${d.hasExistingPolicy || 'N/A'}
+- Companies: ${Array.isArray(d.insuranceCompany) ? d.insuranceCompany.join(', ') : d.insuranceCompany || 'N/A'}
+- Policy Type: ${d.policyType || 'N/A'}
+- Active Policies: ${d.activePoliciesCount || 'N/A'}
+- Coverage Amount: ${d.coverageAmount || 'N/A'}
+- Policy Benefits: ${Array.isArray(d.policyBenefits) ? d.policyBenefits.join(', ') : d.policyBenefits || 'N/A'}
+- Premiums: ${d.premiumAmount || 'N/A'}
+- Confidence Level: ${d.confidenceLevel || 'N/A'}
+- Last Review: ${d.lastReview || 'N/A'}
+
+SECTION 3: INSURANCE STORY
+- Motivation: ${d.motivation || 'N/A'}
+- Biggest Consideration: ${d.biggestConsideration || 'N/A'}
+- Application Experience: ${d.applicationExperience || 'N/A'}
+- Advisor Explanation: ${d.advisorExplanation || 'N/A'}
+- Decision Factor: ${d.decisionProceed || 'N/A'}
+- Wish Had Known: ${d.wishHadKnown || 'N/A'}
+
+SECTION 4: CASH FLOW & LIFESTYLE
+- Monthly Expenses: ${d.monthlyExpenses || 'N/A'}
+- Major Expense Categories: ${Array.isArray(d.expenseCategories) ? d.expenseCategories.join(', ') : d.expenseCategories || 'N/A'}
+- Monthly Savings: ${d.monthlySavings || 'N/A'}
+- Savings Allocation: ${Array.isArray(d.savingsInstruments) ? d.savingsInstruments.join(', ') : d.savingsInstruments || 'N/A'}
+- Primary Savings Goal: ${d.primarySavingsReason || 'N/A'}
+- Emergency Fund Status: ${d.emergencyFundStatus || 'N/A'}
+
+SECTION 5: FUTURE GOALS
+- Top Priorities: ${Array.isArray(d.financialPriorities) ? d.financialPriorities.join(', ') : d.financialPriorities || 'N/A'}
+- Target Retirement Age: ${d.retirementAge || 'N/A'}
+- Target Retirement Fund: ${d.retirementAmount || 'N/A'}
+- 5-10 Year Milestone: ${d.fiveYearGoal || 'N/A'}
+
+SECTION 6: ASSESSMENT & RECOMMENDATIONS
+- Policy Review Interest: ${d.policyReviewInterest || 'N/A'}
+- Areas to Improve: ${Array.isArray(d.improvementAreas) ? d.improvementAreas.join(', ') : d.improvementAreas || 'N/A'}
+- Open to Recommendation: ${d.openToRecommendation || 'N/A'}
+
+Date Completed: ${new Date().toLocaleString()}
+      `.trim();
+    }
+
+    function copySummaryText() {
+      const summary = formatDataSummary(getFormData());
+      navigator.clipboard.writeText(summary).then(() => {
+        alert('Summary copied to clipboard!');
+      });
+    }
+
+    function downloadSummaryFile() {
+      const data = getFormData();
+      const summary = formatDataSummary(data);
+      const blob = new Blob([summary], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Survey_${(data.fullName || 'Client').replace(/\s+/g, '_')}.txt`;
+      a.click();
+    }
+
+    
+    // Handle dynamic fields for "Not sure", "I'm not sure", "Never", "Not thought yet", "I haven't calculated yet" & "Others"
+    function setupDynamicReasonFields() {
+      const notSureValues = ["not sure", "i'm not sure", "never", "not thought yet", "haven't thought about it yet", "i haven't calculated it yet.", "i haven't calculated it yet"];
+      const otherValues = ["other", "others"];
+
+      document.querySelectorAll('.question-block').forEach((block, idx) => {
+        const inputs = block.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+        if (inputs.length === 0) return;
+
+        // Create container for reason/other text input if not exists
+        let detailContainer = block.querySelector('.dynamic-detail-container');
+        if (!detailContainer) {
+          detailContainer = document.createElement('div');
+          detailContainer.className = 'dynamic-detail-container hidden mt-3 transition-all duration-300';
+          block.appendChild(detailContainer);
+        }
+
+        const updateDynamicFields = () => {
+          let checkedInputs = Array.from(inputs).filter(i => i.checked);
+          let needsNotSureReason = checkedInputs.some(i => notSureValues.includes(i.value.trim().toLowerCase()));
+          let needsOtherSpecify = checkedInputs.some(i => otherValues.includes(i.value.trim().toLowerCase()));
+
+          let htmlContent = '';
+
+          if (needsNotSureReason) {
+            const fieldName = inputs[0].name + '_reason';
+            htmlContent += `
+              <div class="p-3 bg-red-50/60 rounded-xl border border-pru-border animate-fade-in">
+                <label class="block text-xs font-semibold text-gray-800 mb-1">
+                  Bakit ito ang iyong napili? (Why?) <span class="text-pru-red">*</span>
+                </label>
+                <input type="text" name="${fieldName}" required placeholder="Pakipaliwanag nang maikli..."
+                  class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-pru-red focus:ring-1 focus:ring-red-100 outline-none text-xs transition-all bg-white">
+              </div>
+            `;
+          }
+
+          if (needsOtherSpecify) {
+            const fieldName = inputs[0].name + '_other_details';
+            htmlContent += `
+              <div class="p-3 bg-gray-50 rounded-xl border border-gray-300 ${needsNotSureReason ? 'mt-2.5' : ''} animate-fade-in">
+                <label class="block text-xs font-semibold text-gray-800 mb-1">
+                  Paki-specify ang detalye (Please specify): <span class="text-pru-red">*</span>
+                </label>
+                <input type="text" name="${fieldName}" required placeholder="Ilagay ang detalye dito..."
+                  class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-pru-red focus:ring-1 focus:ring-red-100 outline-none text-xs transition-all bg-white">
+              </div>
+            `;
+          }
+
+          if (needsNotSureReason || needsOtherSpecify) {
+            detailContainer.innerHTML = htmlContent;
+            detailContainer.classList.remove('hidden');
+          } else {
+            detailContainer.innerHTML = '';
+            detailContainer.classList.add('hidden');
+          }
+        };
+
+        inputs.forEach(input => {
+          input.addEventListener('change', updateDynamicFields);
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupDynamicReasonFields);
+
+    setupDynamicReasonFields();
+    updateUI();
+  </script>
+</body>
+</html>
